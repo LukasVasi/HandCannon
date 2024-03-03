@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://derowlc4gnlmc"]
+[gd_scene load_steps=9 format=3 uid="uid://derowlc4gnlmc"]
 
+[ext_resource type="Texture2D" uid="uid://coplw835h57xj" path="res://textures/ground.jpg" id="1_6lgti"]
 [ext_resource type="Script" path="res://scenes/Player.gd" id="1_ahtk4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fngpn"]
@@ -14,6 +15,10 @@ background_mode = 2
 sky = SubResource("Sky_l0fdt")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6n6kf"]
+albedo_texture = ExtResource("1_6lgti")
+uv1_triplanar = true
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_tjufo"]
 
@@ -30,13 +35,14 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_pe6bj")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4995, 0)
+[node name="Ground" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 use_collision = true
-size = Vector3(25, 0.001, 19)
+size = Vector3(100, 1, 100)
+material = SubResource("StandardMaterial3D_6n6kf")
 
 [node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.615665, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1043, 0)
 script = ExtResource("1_ahtk4")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
@@ -49,3 +55,13 @@ shape = SubResource("ConvexPolygonShape3D_qmbfv")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.538448, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Player/Head"]
+
+[node name="Platform1" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -7.769)
+use_collision = true
+size = Vector3(3, 0.5, 2)
+
+[node name="Platform2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.91713, 0.5, -7.76892)
+use_collision = true
+size = Vector3(3, 1, 2)

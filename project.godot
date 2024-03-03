@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 project/assembly_name="Hand Cannon"
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 ui_left={
